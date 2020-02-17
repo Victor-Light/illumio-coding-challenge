@@ -59,7 +59,10 @@ class FireWall:
         while index < len(portsPool)+1:
             item = portsPool[index-1] # data structure for item is([5,8], 1) represent the port range 5-8 key is 1
             if port > item[0][1]:
-                index *= 2
+                if index*2 < len(portsPool)+1:
+                    index *= 2
+                else:
+                    index +=1
             else:
                 if port in range(item[0][0], item[0][1]+1):
                     keyOfPorts.append(item[1])
